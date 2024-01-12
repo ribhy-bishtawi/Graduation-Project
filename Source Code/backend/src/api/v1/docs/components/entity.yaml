@@ -1,0 +1,83 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: The entity ID.
+  arabicName:
+    type: string
+    description: The entity arabic name.
+  englishName:
+    type: string
+    description: The entity english name.
+  facebookLink:
+    type: string
+    description: The entity facebook link.
+  instagramLink:
+    type: string
+    description: The entity instagram link.
+  tiktokLink:
+    type: string
+    description: The entity tiktok link.
+  cityId:
+    type: integer
+    description: The entity city ID.
+  profileImage:
+    type: string
+    description: The entity profile image.
+  contactNumber:
+    type: string
+    description: The entity contact number.
+  contactName:
+    type: string
+    description: The entity contact name.
+  status:
+    type: string
+    description: The entity status (hidden, published).
+  type:
+    type: string
+    description: The entity type (store, publicPlace , bankBranch).
+  visitCount:
+    type: integer
+    description: The entity visit count.
+  arabicDescription:
+    type: string
+    description: The entity arabic description.
+  englishDescription:
+    type: string
+    description: The entity english description.
+  commercialId:
+    type: string
+    description: The entity commercial ID.
+  ownerId:
+    type: integer
+    description: The entity owner ID.
+  createdAt:
+    type: string
+    format: date-time
+    description: The entity creation date.
+  updatedAt:
+    type: string
+    format: date-time
+    description: The entity last update date.
+example:
+  {
+    'id': 1,
+    'arabicName': 'مطعم الشيف',
+    'englishName': 'Chef Restaurant',
+    'facebookLink': 'https://www.facebook.com/chefrestaurant',
+    'instagramLink': 'https://www.instagram.com/chefrestaurant',
+    'tiktokLink': 'https://www.tiktok.com/chefrestaurant',
+    'cityId': 1,
+    'profileImage': 'https://www.chefrestaurant.com/profile.jpg',
+    'contactNumber': '0123456789',
+    'contactName': 'Ahmed',
+    'status': 'published',
+    'type': 'store',
+    'visitCount': 200,
+    'arabicDescription': 'مطعم الشيف هو مطعم متخصص في الوجبات السريعة',
+    'englishDescription': 'Chef Restaurant is a fast food restaurant',
+    'commercialId': '123456789',
+    'ownerId': 1,
+    'createdAt': '2021-01-01T00:00:00.000Z',
+    'updatedAt': '2021-01-01T00:00:00.000Z',
+  }

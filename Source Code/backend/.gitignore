@@ -1,0 +1,6 @@
+node_modules/
+dist/
+logs/
+*.env
+.idea/
+src/api/v1/docs/index.json

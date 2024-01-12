@@ -1,0 +1,43 @@
+tags:
+  - Entity API
+summary: Update entity-category table
+description: Update entity-category table, only (admin, super_admin, treesal) or store_owner that own the entity can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: The entity id
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          categoryIds:
+            type: array
+            items:
+              type: number
+            description: The categoryIds of categories.
+        required:
+          - categoryIds
+      example:
+        categoryIds: [1, 2]
+responses:
+  '204':
+    description: Entity-category updated successfully
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: Entity not found
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

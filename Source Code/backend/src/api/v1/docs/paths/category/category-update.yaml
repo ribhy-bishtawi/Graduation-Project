@@ -1,0 +1,45 @@
+tags:
+  - Category API
+summary: Update a category
+description: Update a category by ID, only (admin, super_admin, treesal) can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: Category ID
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          arabicName:
+            type: string
+            description: Category name in Arabic
+            example: 'الملابس'
+          englishName:
+            type: string
+            description: Category name in English
+            example: 'Clothes'
+        required:
+          - arabicName
+          - englishName
+responses:
+  '204':
+    description: Category updated successfully
+  '400':
+    description: Bad request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: Category not found
+  '500':
+    description: Internal server error
+security:
+  - bearerAuth: []

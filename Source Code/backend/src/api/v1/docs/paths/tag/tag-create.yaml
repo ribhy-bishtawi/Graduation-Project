@@ -1,0 +1,45 @@
+tags:
+  - Tag API
+summary: Create a new tag
+description: Create a new tag, only (store_owner,admin, super_admin, treesal) can use this endpoint
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - arabicName
+          - englishName
+        properties:
+          arabicName:
+            type: string
+            description: The tag arabic name
+          englishName:
+            type: string
+            description: The tag english name
+      example:
+        arabicName: ماكينات صرف
+        englishName: ATM
+responses:
+  '201':
+    description: Tag created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: number
+              description: The unique identifier of the tag.
+              example: 1
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

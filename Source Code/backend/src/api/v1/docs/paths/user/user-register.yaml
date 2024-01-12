@@ -1,0 +1,75 @@
+tags:
+  - User API
+summary: Register a user
+description: Register a new user, only (admin, super_admin, treesal) can use this endpoint
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          userName:
+            type: string
+            description: User name
+            example: 'ali'
+          password:
+            type: string
+            description: User password (at least 6 characters long and accept letters, numbers, and special characters)
+            example: '123456'
+          fullName:
+            type: string
+            description: User full name
+            example: 'ali ashraf'
+          profileImage:
+            type: string
+            description: User profile image
+            example: 'image.png'
+          googleId:
+            type: string
+            description: Google id
+            example: '123456789'
+          facebookId:
+            type: string
+            description: Facebook id
+            example: '123456789'
+          appleId:
+            type: string
+            description: Apple id
+            example: '123456789'
+          type:
+            type: string
+            description: User type (treesal, super_admin, store_owner, admin, customer)
+            example: 'customer'
+          phoneNumber:
+            type: string
+            example: '01000000000'
+          email:
+            type: string
+            example: 'user@gmail.com'
+        required:
+          - userName
+          - type
+responses:
+  '201':
+    description: User created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '409':
+    description: User name or phone number already exists
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

@@ -1,0 +1,168 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  userName     String         @unique @map("user_name")
+  fullName     String?        @map("full_name")
+  profileImage String?        @map("profile_image")
+  googleId     String?        @map("google_id")
+  facebookId   String?        @map("facebook_id")
+  appleId      String?        @map("apple_id")
+  type         String
+  phoneNumber  String?        @unique @map("phone_number")
+  email        String?
+  password     String?
+  otpCode      String?        @map("otp_code")
+  otpExpiry    DateTime?      @map("otp_expiry")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+  Notification Notification[]
+  Entity       Entity[]
+
+  @@map("user")
+}
+
+
+
+model Entity {
+  id                 Int              @id @default(autoincrement())
+  arabicName         String           @map("arabic_name")
+  englishName        String           @map("english_name")
+  facebookLink       String?          @map("facebook_link")
+  instagramLink      String?          @map("instagram_link")
+  tiktokLink         String?          @map("tiktok_link")
+  cityId             Int              @map("city_id")
+  city               City             @relation(fields: [cityId], references: [id])
+  profileImage       String?          @map("profile_image")
+  contactNumber      String?          @map("contact_number")
+  contactName        String?          @map("contact_name")
+  status             String           @default("hidden")
+  type               String
+  visitCount         Int?             @default(0) @map("visit_count")
+  arabicDescription  String?          @map("arabic_description")
+  englishDescription String?          @map("english_description")
+  commercialId       String?          @map("commercial_id")
+  ownerId            Int?             @map("owner_id")
+  owner              User?            @relation(fields: [ownerId], references: [id])
+  createdAt          DateTime         @default(now()) @map("created_at")
+  updatedAt          DateTime         @updatedAt @map("updated_at")
+  EntityImage        EntityImage[]
+  WorkingHr          WorkingHr[]
+  Ad                 Ad[]
+  Address            Address[]
+  EntityTag          EntityTag[]
+  EntityCategory     EntityCategory[]
+
+  @@map("entity")
+}
+
+
+
+model WorkingHr {
+  id        Int      @id @default(autoincrement())
+  entityId  Int      @map("entity_id")
+  entity    Entity   @relation(fields: [entityId], references: [id])
+  day       Int
+  openTime  Float?   @map("open_time")
+  closeTime Float?   @map("close_time")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("working_hr")
+}
+
+model City {
+  id          Int      @id @default(autoincrement())
+  arabicName  String   @map("arabic_name")
+  englishName String   @map("english_name")
+  status      String   @default("hidden")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  Entity      Entity[]
+
+  @@map("city")
+}
+
+model Address {
+  id          Int           @id @default(autoincrement())
+  arabicName  String        @map("arabic_name")
+  englishName String        @map("english_name")
+  lat         Float
+  long        Float
+  entityId    Int           @map("entity_id")
+  entity      Entity        @relation(fields: [entityId], references: [id])
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  AddressTage AddressTage[]
+
+  @@map("address")
+}
+
+model Tag {
+  id          Int           @id @default(autoincrement())
+  arabicName  String        @map("arabic_name")
+  englishName String        @map("english_name")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  EntityTag   EntityTag[]
+  AddressTage AddressTage[]
+
+  @@map("tag")
+}
+
+model Category {
+  id             Int              @id @default(autoincrement())
+  arabicName     String           @map("arabic_name")
+  englishName    String           @map("english_name")
+  visitCount     Int?             @default(0) @map("visit_count")
+  createdAt      DateTime         @default(now()) @map("created_at")
+  updatedAt      DateTime         @updatedAt @map("updated_at")
+  EntityCategory EntityCategory[]
+
+  @@map("category")
+}
+
+model EntityTag {
+  id        Int      @id @default(autoincrement())
+  entityId  Int      @map("entity_id")
+  entity    Entity   @relation(fields: [entityId], references: [id])
+  tagId     Int      @map("tag_id")
+  tag       Tag      @relation(fields: [tagId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("entity_tag")
+}
+
+model EntityCategory {
+  id         Int      @id @default(autoincrement())
+  entityId   Int      @map("entity_id")
+  entity     Entity   @relation(fields: [entityId], references: [id])
+  categoryId Int      @map("category_id")
+  category   Category @relation(fields: [categoryId], references: [id])
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("entity_category")
+}
+
+model AddressTage {
+  id        Int      @id @default(autoincrement())
+  addressId Int      @map("address_id")
+  address   Address  @relation(fields: [addressId], references: [id])
+  tagId     Int      @map("tag_id")
+  tag       Tag      @relation(fields: [tagId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("address_tag")
+}

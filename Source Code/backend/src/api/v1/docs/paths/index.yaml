@@ -1,0 +1,125 @@
+# Entity API
+/entitys:
+  post:
+    $ref: './entity/entity-create.yaml'
+  get:
+    $ref: './entity/entity-list.yaml'
+
+/entitys/{id}:
+  get:
+    $ref: './entity/entity-get.yaml'
+  put:
+    $ref: './entity/entity-update.yaml'
+  delete:
+    $ref: './entity/entity-delete.yaml'
+
+/entitys/status/{id}:
+  put:
+    $ref: './entity/entity-updateStatus.yaml'
+
+# Tag API
+/tags:
+  post:
+    $ref: './tag/tag-create.yaml'
+  get:
+    $ref: './tag/tag-list.yaml'
+/tags/{id}:
+  get:
+    $ref: './tag/tag-get.yaml'
+  put:
+    $ref: './tag/tag-update.yaml'
+  delete:
+    $ref: './tag/tag-delete.yaml'
+
+# Category API
+/categories:
+  post:
+    $ref: './category/category-create.yaml'
+  get:
+    $ref: './category/category-list.yaml'
+/categories/{id}:
+  get:
+    $ref: './category/category-get.yaml'
+  put:
+    $ref: './category/category-update.yaml'
+  delete:
+    $ref: './category/category-delete.yaml'
+
+# User API
+/users/register:
+  post:
+    $ref: './user/user-register.yaml'
+/users/registerAdmin:
+  post:
+    $ref: './user/user-registerAdmin.yaml'
+/users/login:
+  post:
+    $ref: './user/user-login.yaml'
+/users/{id}:
+  get:
+    $ref: './user/user-get.yaml'
+  put:
+    $ref: './user/user-update.yaml'
+  delete:
+    $ref: './user/user-delete.yaml'
+/users:
+  get:
+    $ref: './user/user-list.yaml'
+/users/{id}/resetPassword:
+  put:
+    $ref: './user/user-resetPassword.yaml'
+/users/login-otp:
+  post:
+    $ref: './user/user-login-otp.yaml'
+/users/verify-otp:
+  post:
+    $ref: './user/user-verify-otp.yaml'
+
+# City API
+/cities:
+  post:
+    $ref: './city/city-create.yaml'
+  get:
+    $ref: './city/city-list.yaml'
+/cities/{id}:
+  get:
+    $ref: './city/city-get.yaml'
+  put:
+    $ref: './city/city-update.yaml'
+  delete:
+    $ref: './city/city-delete.yaml'
+/cities/status/{id}:
+  put:
+    $ref: './city/city-updateStatus.yaml'
+
+# Address API
+/addresses:
+  post:
+    $ref: './address/address-create.yaml'
+  get:
+    $ref: './address/address-list.yaml'
+
+/addresses/{id}:
+  get:
+    $ref: './address/address-get.yaml'
+  put:
+    $ref: './address/address-update.yaml'
+  delete:
+    $ref: './address/address-delete.yaml'
+
+/addresses/{id}/tags:
+  put:
+    $ref: './address/addressTag-update.yaml'
+
+# WorkingHr API
+/workingHrs:
+  post:
+    $ref: './workingHr/workingHr-create.yaml'
+/workingHrs/{entityId}:
+  get:
+    $ref: './workingHr/workingHr-get.yaml'
+/workingHrs/{id}:
+  put:
+    $ref: './workingHr/workingHr-update.yaml'
+  delete:
+    $ref: './workingHr/workingHr-delete.yaml'

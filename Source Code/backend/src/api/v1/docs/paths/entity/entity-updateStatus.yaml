@@ -1,0 +1,42 @@
+tags:
+  - Entity API
+summary: Update entity status
+description: Update entity status by id, only (admin, super_admin, treesal) or store_owner that own the entity can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: The entity id to retrieve
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - status
+        properties:
+          status:
+            type: string
+            enum:
+              - hidden
+              - published
+            example: hidden
+responses:
+  '204':
+    description: Entity status updated successfully
+  '400':
+    description: Bad RequestS
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: Entity not found
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

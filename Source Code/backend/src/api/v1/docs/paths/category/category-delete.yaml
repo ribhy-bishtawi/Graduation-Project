@@ -1,0 +1,27 @@
+tags:
+  - Category API
+summary: Delete a category
+description: Delete a category by ID, only (admin, super_admin, treesal) can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: Category ID
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '204':
+    description: Category deleted successfully
+  '400':
+    description: Bad request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: Category not found
+  '500':
+    description: Internal server error
+security:
+  - bearerAuth: []

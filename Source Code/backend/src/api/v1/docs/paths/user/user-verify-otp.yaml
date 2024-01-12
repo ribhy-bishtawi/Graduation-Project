@@ -1,0 +1,46 @@
+tags:
+  - User API
+summary: Verify OTP to login
+description: Verify OTP to login
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          phoneNumber:
+            type: string
+            example: '12345678'
+          otpCode:
+            type: string
+            example: '123456'
+        required:
+          - phoneNumber
+          - otpCode
+responses:
+  '200':
+    description: User logged in successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            userId:
+              type: number
+              example: 1
+            userName:
+              type: string
+              example: 'eslam'
+            token:
+              type: string
+              example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
+            role:
+              type: string
+              example: 'treesal'
+  '400':
+    description: invalid OTP
+  '404':
+    description: User not found
+  '500':
+    description: Internal Server Error

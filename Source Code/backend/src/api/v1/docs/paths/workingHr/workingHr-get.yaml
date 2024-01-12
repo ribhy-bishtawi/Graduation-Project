@@ -1,0 +1,60 @@
+tags:
+  - WorkingHr API
+summary: Get all workingHrs related to an entity
+description: Get all workingHrs related to an entity by entityId
+parameters:
+  - name: entityId
+    in: path
+    description: The entity id to get workingHrs for
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '200':
+    description: workingHrs retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+                description: The unique identifier of the workingHr.
+                example: 1
+              entityId:
+                type: integer
+                description: The workingHr entityId
+                example: 1
+              day:
+                type: integer
+                description: The workingHr day (0-6)
+                example: 1
+              openTime:
+                type: number
+                description: The workingHr openTime (0-23)
+                example: 8
+              closeTime:
+                type: number
+                description: The workingHr closeTime (0-23)
+                example: 16
+              createdAt:
+                type: string
+                format: date-time
+                description: The workingHr creation date
+                example: 2021-01-01T00:00:00.000Z
+              updatedAt:
+                type: string
+                format: date-time
+                description: The workingHr last update date
+                example: 2021-01-01T00:00:00.000Z
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '500':
+    description: Internal Server Error

@@ -1,0 +1,53 @@
+tags:
+  - WorkingHr API
+summary: Create workingHr
+description: Create workingHr, only (admin, super_admin, treesal) or store_owner that own the entity can use this endpoint
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - entityId
+          - day
+        properties:
+          entityId:
+            type: integer
+            description: The workingHr entityId
+          day:
+            type: integer
+            description: The workingHr day (0-6)
+          openTime:
+            type: number
+            description: The workingHr openTime (0-23)
+          closeTime:
+            type: number
+            description: The workingHr closeTime (0-23)
+      example:
+        entityId: 1
+        day: 1
+        openTime: 8
+        closeTime: 16
+responses:
+  '201':
+    description: workingHr created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: number
+              description: The unique identifier of the workingHr.
+              example: 1
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

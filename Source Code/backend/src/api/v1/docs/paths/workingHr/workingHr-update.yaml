@@ -1,0 +1,54 @@
+tags:
+  - WorkingHr API
+summary: Update workingHr
+description: Update workingHr by id, only (admin, super_admin, treesal) or store_owner that own the entity can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: The workingHr id to update
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - entityId
+          - day
+        properties:
+          entityId:
+            type: integer
+            description: The workingHr entityId
+          day:
+            type: integer
+            description: The workingHr day (0-6)
+          openTime:
+            type: number
+            description: The workingHr openTime (0-23)
+          closeTime:
+            type: number
+            description: The workingHr closeTime (0-23)
+      example:
+        entityId: 1
+        day: 1
+        openTime: 8
+        closeTime: 16
+responses:
+  '204':
+    description: workingHr updated
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: workingHr not found
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

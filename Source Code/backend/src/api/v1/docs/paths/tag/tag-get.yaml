@@ -1,0 +1,58 @@
+tags:
+  - Tag API
+summary: Get tag
+description: Get tag by id
+parameters:
+  - name: id
+    in: path
+    description: The tag id to retrieve
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '200':
+    description: tag
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The tag ID
+              example: 1
+            arabicName:
+              type: string
+              description: The tag arabic name
+              example: ماكينات صرف
+            englishName:
+              type: string
+              description: The tag english name
+              example: ATM
+            createdAt:
+              type: string
+              format: date-time
+              description: The accessory creation date.
+              example: '2021-01-01T00:00:00.000Z'
+            updatedAt:
+              type: string
+              format: date-time
+              description: The accessory last update date.
+              example: '2021-01-01T00:00:00.000Z'
+            entityTagsCount:
+              type: integer
+              description: The number of entity that used this tags
+              example: 1
+            addressTagsCount:
+              type: integer
+              description: The number of address that used this tags
+              example: 1
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '404':
+    description: tag not found
+  '500':
+    description: Internal Server Error

@@ -1,0 +1,46 @@
+tags:
+  - Tag API
+summary: Update tag
+description: Update tag by id, only (admin, super_admin, treesal) can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: The tag id to update
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - arabicName
+          - englishName
+        properties:
+          arabicName:
+            type: string
+            description: The tag arabic name
+          englishName:
+            type: string
+            description: The tag english name
+      example:
+        arabicName: ماكينات صرف
+        englishName: ATM
+responses:
+  '204':
+    description: Tag updated
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: Tag not found
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

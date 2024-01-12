@@ -1,0 +1,59 @@
+tags:
+  - User API
+summary: Register an admin
+description: This endpoint is used to register an admin, only treesal and super_admin can use this endpoint.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          userName:
+            type: string
+            description: User name
+            example: 'ali'
+          password:
+            type: string
+            description: User password (at least 6 characters long and accept letters, numbers, and special characters)
+            example: '123456'
+          fullName:
+            type: string
+            description: User full name
+            example: 'ali ashraf'
+          profileImage:
+            type: string
+            description: User profile image
+            example: 'image.png'
+          phoneNumber:
+            type: string
+            example: '01000000000'
+          email:
+            type: string
+            example: 'admin@gmail.com'
+        required:
+          - userName
+          - password
+responses:
+  '201':
+    description: Admin created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '409':
+    description: User name or phone number already exists
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

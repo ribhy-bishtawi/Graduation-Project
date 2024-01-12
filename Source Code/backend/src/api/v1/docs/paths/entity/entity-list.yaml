@@ -1,0 +1,82 @@
+tags:
+  - Entity API
+summary: Entity List
+description: Get All Entitys
+parameters:
+  - in: query
+    name: pageNumber
+    schema:
+      type: integer
+    description: The page number.
+  - in: query
+    name: pageSize
+    schema:
+      type: integer
+    description: The page size.
+  - in: query
+    name: id
+    schema:
+      type: integer
+    description: The id of the entity.
+  - in: query
+    name: arabicName
+    schema:
+      type: string
+    description: The arabicName of the entity.
+  - in: query
+    name: englishName
+    schema:
+      type: string
+    description: The englishName of the entity.
+  - in: query
+    name: status
+    schema:
+      type: string
+    description: The status of the entity (hidden , published)
+  - in: query
+    name: type
+    schema:
+      type: string
+    description: The type of the entity (store , publicPlace , bankBranch)
+  - in: query
+    name: commercialId
+    schema:
+      type: integer
+    description: The commercialId of the entity.
+  - in: query
+    name: sortField
+    schema:
+      type: string
+    description: The sort field (id , arabicName).
+  - in: query
+    name: sortOrder
+    schema:
+      type: string
+    description: The sort order (asc , desc).
+responses:
+  '200':
+    description: Entitys List
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            entitys:
+              type: array
+              items:
+                $ref: '../../components/entity.yaml'
+            metaData:
+              type: object
+              properties:
+                page:
+                  type: integer
+                pageSize:
+                  type: integer
+                total:
+                  type: integer
+                totalPages:
+                  type: integer
+  '401':
+    description: Auhtentication failed
+  '500':
+    description: Internal server error

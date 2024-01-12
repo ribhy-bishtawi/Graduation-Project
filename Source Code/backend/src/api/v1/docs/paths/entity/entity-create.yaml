@@ -1,0 +1,95 @@
+tags:
+  - Entity API
+summary: Create a new entity
+description: Create a new entity, only (store_owner,admin, super_admin, treesal) can use this endpoint
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - arabicName
+          - englishName
+          - cityId
+          - type
+        properties:
+          arabicName:
+            type: string
+            description: The entity arabic name
+          englishName:
+            type: string
+            description: The entity english name
+          facebookLink:
+            type: string
+            description: The entity facebook link
+          instgramLink:
+            type: string
+            description: The entity instgram link
+          tiktokLink:
+            type: string
+            description: The entity tiktok link
+          cityId:
+            type: number
+            description: The entity city id
+          profileImage:
+            type: string
+            description: The entity profile image
+          contactNumber:
+            type: string
+            description: The entity contact number
+          contactName:
+            type: string
+            description: The entity contact name
+          type:
+            type: string
+            description: The entity type ('store , publicPlace , bankBranch)
+          arabicDescription:
+            type: string
+            description: The entity arabic description
+          englishDescription:
+            type: string
+            description: The entity english description
+          commercialId:
+            type: string
+            description: The entity commercial id
+          ownerId:
+            type: number
+            description: The entity owner id
+      example:
+        arabicName: 'مطعم السلطان'
+        englishName: 'Sultan Restaurant'
+        facebookLink: 'https://www.facebook.com/sultanrestaurant'
+        instgramLink: 'https://www.instagram.com/sultanrestaurant'
+        tiktokLink: 'https://www.tiktok.com/@sultanrestaurant'
+        cityId: 1
+        profileImage: 'https://www.sultanrestaurant.com/profile.png'
+        contactNumber: '0123456789'
+        contactName: 'Ahmed'
+        type: 'store'
+        arabicDescription: 'مطعم السلطان هو مطعم متخصص في المأكولات البحرية'
+        englishDescription: 'Sultan Restaurant is a restaurant specialized in seafood'
+        commercialId: '123456789'
+        ownerId: 1
+responses:
+  '201':
+    description: Entity created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: number
+              description: The unique identifier of the entity.
+              example: 1
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

@@ -1,0 +1,60 @@
+tags:
+  - Address API
+summary: Create a new address
+description: Create a new address, only (admin, super_admin, treesal) or store_owner that own the entity can use this endpoint
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - arabicName
+          - englishName
+          - lat
+          - long
+          - entityId
+        properties:
+          arabicName:
+            type: string
+            description: The address arabic name
+          englishName:
+            type: string
+            description: The address english name
+          lat:
+            type: number
+            description: The address latitude
+          long:
+            type: number
+            description: The address longitude
+          entityId:
+            type: number
+            description: The address entity id
+      example:
+        arabicName: 'المنصورة'
+        englishName: 'Mansoura'
+        lat: 31.037933
+        long: 31.381523
+        entityId: 1
+responses:
+  '201':
+    description: Address created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: number
+              description: The unique identifier of the address.
+              example: 1
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

@@ -1,0 +1,52 @@
+tags:
+  - City API
+summary: Get city
+description: Get city by id
+parameters:
+  - name: id
+    in: path
+    description: The city id to retrieve
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '200':
+    description: City retrieved
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The city id
+              example: 1
+            arabicName:
+              type: string
+              description: The city arabicName
+              example: القاهرة
+            englishName:
+              type: string
+              description: The city englishName
+              example: Cairo
+            status:
+              type: string
+              description: The city status (hidden, published)
+              example: hidden
+            created_at:
+              type: string
+              format: date-time
+              example: '2021-01-01T00:00:00.000Z'
+            updated_at:
+              type: string
+              format: date-time
+              example: '2021-01-01T00:00:00.000Z'
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '404':
+    description: City not found
+  '500':
+    description: Internal Server Error

@@ -1,0 +1,67 @@
+tags:
+  - Tag API
+summary: Tag List
+description: Get All Tags
+parameters:
+  - in: query
+    name: pageNumber
+    schema:
+      type: integer
+    description: The page number.
+  - in: query
+    name: pageSize
+    schema:
+      type: integer
+    description: The page size.
+  - in: query
+    name: id
+    schema:
+      type: integer
+    description: The id of the tag.
+  - in: query
+    name: arabicName
+    schema:
+      type: string
+    description: The arabicName of the tag.
+  - in: query
+    name: englishName
+    schema:
+      type: string
+    description: The englishName of the tag.
+  - in: query
+    name: sortField
+    schema:
+      type: string
+    description: The sort field (id , arabicName).
+  - in: query
+    name: sortOrder
+    schema:
+      type: string
+    description: The sort order (asc , desc).
+responses:
+  '200':
+    description: Tags List
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            tags:
+              type: array
+              items:
+                $ref: '../../components/tag.yaml'
+            metaData:
+              type: object
+              properties:
+                page:
+                  type: integer
+                pageSize:
+                  type: integer
+                total:
+                  type: integer
+                totalPages:
+                  type: integer
+  '401':
+    description: Auhtentication failed
+  '500':
+    description: Internal server error

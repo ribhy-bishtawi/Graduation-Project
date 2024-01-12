@@ -1,0 +1,22 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: SNAP API Documentation
+  description: SNAP API Documentation
+  contact:
+    email: ribhy2001@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  # - url:
+
+paths:
+  $ref: ./paths/index.yaml
+components:
+  $ref: ./components/index.yaml
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes

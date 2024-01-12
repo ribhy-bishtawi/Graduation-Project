@@ -1,0 +1,103 @@
+tags:
+  - City API
+summary: City list
+description: Get All Cities
+parameters:
+  - in: query
+    name: pageNumber
+    schema:
+      type: integer
+    description: The page number.
+  - in: query
+    name: pageSize
+    schema:
+      type: integer
+    description: The page size.
+  - in: query
+    name: id
+    schema:
+      type: integer
+    description: The id of the city.
+  - in: query
+    name: arabicName
+    schema:
+      type: string
+    description: The arabicName of the city.
+  - in: query
+    name: englishName
+    schema:
+      type: string
+    description: The englishName of the city.
+  - in: query
+    name: status
+    schema:
+      type: string
+    description: The status of the city (hidden, published)
+  - in: query
+    name: sortField
+    schema:
+      type: string
+    description: The sort field (id , arabicName, englishName, status).
+  - in: query
+    name: sortOrder
+    schema:
+      type: string
+    description: The sort order (asc , desc).
+responses:
+  '200':
+    description: City list retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            cities:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: city ID
+                    example: 1
+                  arabicName:
+                    type: string
+                    description: city name in Arabic
+                    example: 'القاهرة'
+                  englishName:
+                    type: string
+                    description: city name in English
+                    example: 'Cairo'
+                  status:
+                    type: string
+                    description: City status (hidden, published)
+                    example: published
+                  createdAt:
+                    type: date-time
+                    description: city creation date
+                    example: '2021-01-01T00:00:00.000Z'
+                  updatedAt:
+                    type: date-time
+                    description: city last update date
+                    example: '2021-01-01T00:00:00.000Z'
+            metaData:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  example: 1
+                pageSize:
+                  type: integer
+                  example: 10
+                total:
+                  type: integer
+                  example: 1
+                totalPages:
+                  type: integer
+                  example: 1
+  '400':
+    description: Bad request
+  '401':
+    description: Authentication failed
+  '500':
+    description: Internal server error

@@ -1,0 +1,39 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: The address ID
+  arabicName:
+    type: string
+    description: The address arabic name
+  englishName:
+    type: string
+    description: The address english name
+  lat:
+    type: number
+    description: The address latitude
+  long:
+    type: number
+    description: The address longitude
+  entityId:
+    type: number
+    description: The address entity id
+  createdAt:
+    type: string
+    format: date-time
+    description: The address creation date.
+  updatedAt:
+    type: string
+    format: date-time
+    description: The address last update date.
+example:
+  {
+    'id': 1,
+    'arabicName': 'المنصورة',
+    'englishName': 'Mansoura',
+    'lat': 31.037933,
+    'long': 31.381523,
+    'entityId': 1,
+    'createdAt': '2021-01-01T00:00:00.000Z',
+    'updatedAt': '2021-01-01T00:00:00.000Z',
+  }

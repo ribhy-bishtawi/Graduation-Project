@@ -1,0 +1,89 @@
+tags:
+  - Address API
+summary: Get address
+description: Get address by id
+parameters:
+  - name: id
+    in: path
+    description: The address id to retrieve
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '200':
+    description: address
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The address ID
+              example: 1
+            arabicName:
+              type: string
+              description: The address arabic name
+              example: 'المنصورة'
+            englishName:
+              type: string
+              description: The address english name
+              example: 'Mansoura'
+            lat:
+              type: number
+              description: The address latitude
+              example: 31.037933
+            long:
+              type: number
+              description: The address longitude
+              example: 31.381523
+            entityId:
+              type: number
+              description: The address entity id
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              description: The address creation date.
+              example: '2021-01-01T00:00:00.000Z'
+            updatedAt:
+              type: string
+              format: date-time
+              description: The address last update date.
+              example: '2021-01-01T00:00:00.000Z'
+            tags:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The tag ID
+                    example: 1
+                  arabicName:
+                    type: string
+                    description: The tag arabic name
+                    example: ماكينات صرف
+                  englishName:
+                    type: string
+                    description: The tag english name
+                    example: ATM
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: The accessory creation date.
+                    example: 2021-01-01T00:00:00.000Z
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: The accessory last update date.
+                    example: 2021-01-01T00:00:00.000Z
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '404':
+    description: address not found
+  '500':
+    description: Internal Server Error

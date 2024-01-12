@@ -1,0 +1,27 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: The tag ID
+  arabicName:
+    type: string
+    description: The tag arabic name
+  englishName:
+    type: string
+    description: The tag english name
+  createdAt:
+    type: string
+    format: date-time
+    description: The accessory creation date.
+  updatedAt:
+    type: string
+    format: date-time
+    description: The accessory last update date.
+example:
+  {
+    'id': 1,
+    'arabicName': 'ماكينات صرف',
+    'englishName': 'ATM',
+    'createdAt': '2021-01-01T00:00:00.000Z',
+    'updatedAt': '2021-01-01T00:00:00.000Z',
+  }

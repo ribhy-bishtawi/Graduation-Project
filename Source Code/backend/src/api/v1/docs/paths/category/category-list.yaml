@@ -1,0 +1,95 @@
+tags:
+  - Category API
+summary: Category list
+description: Get All Categories
+parameters:
+  - in: query
+    name: pageNumber
+    schema:
+      type: integer
+    description: The page number.
+  - in: query
+    name: pageSize
+    schema:
+      type: integer
+    description: The page size.
+  - in: query
+    name: id
+    schema:
+      type: integer
+    description: The id of the category.
+  - in: query
+    name: arabicName
+    schema:
+      type: string
+    description: The arabicName of the category.
+  - in: query
+    name: englishName
+    schema:
+      type: string
+    description: The englishName of the category.
+  - in: query
+    name: sortField
+    schema:
+      type: string
+    description: The sort field (id , arabicName).
+  - in: query
+    name: sortOrder
+    schema:
+      type: string
+    description: The sort order (asc , desc).
+
+responses:
+  '200':
+    description: Category list retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            categories:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Category ID
+                    example: 1
+                  arabicName:
+                    type: string
+                    description: Category name in Arabic
+                    example: 'الملابس'
+                  englishName:
+                    type: string
+                    description: Category name in English
+                    example: 'Clothes'
+                  visitCount:
+                    type: number
+                    description: Category visit count
+                    example: 0
+                  createdAt:
+                    type: date-time
+                    description: Category creation date
+                    example: '2021-01-01T00:00:00.000Z'
+                  updatedAt:
+                    type: date-time
+                    description: Category last update date
+                    example: '2021-01-01T00:00:00.000Z'
+            metaData:
+              type: object
+              properties:
+                page:
+                  type: integer
+                pageSize:
+                  type: integer
+                total:
+                  type: integer
+                totalPages:
+                  type: integer
+  '400':
+    description: Bad request
+  '401':
+    description: Authentication failed
+  '500':
+    description: Internal server error

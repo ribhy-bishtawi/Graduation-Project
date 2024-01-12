@@ -1,0 +1,66 @@
+tags:
+  - User API
+summary: Get a user
+description: Get a user by id
+parameters:
+  - name: id
+    in: path
+    description: User id
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '200':
+    description: User retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            userName:
+              type: string
+              example: eslam
+            fullName:
+              type: string
+              example: eslam ashraf
+            profileImage:
+              type: string
+              example: 'image.png'
+            googleId:
+              type: string
+              example: '123456789'
+            facebookId:
+              type: string
+              example: '123456789'
+            appleId:
+              type: string
+              example: '123456789'
+            type:
+              type: string
+              example: treesal
+            phoneNumber:
+              type: string
+              example: '01000000000'
+            email:
+              type: string
+              example: 'user@gmail.com'
+            createdAt:
+              type: string
+              example: '2021-05-30T12:00:00.000Z'
+            updatedAt:
+              type: string
+              example: '2021-05-30T12:00:00.000Z'
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '404':
+    description: User not found
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

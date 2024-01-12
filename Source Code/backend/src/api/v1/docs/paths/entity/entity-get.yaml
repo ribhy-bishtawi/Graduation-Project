@@ -1,0 +1,162 @@
+tags:
+  - Entity API
+summary: Get an entity
+description: Get an entity
+parameters:
+  - name: id
+    in: path
+    description: The entity id to retrieve
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '200':
+    description: Entity retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The entity ID.
+              example: 1
+            arabicName:
+              type: string
+              description: The entity arabic name.
+              example: مطعم الشيف
+            englishName:
+              type: string
+              description: The entity english name.
+              example: Chef Restaurant
+            facebookLink:
+              type: string
+              description: The entity facebook link.
+              example: https://www.facebook.com/chefrestaurant
+            instagramLink:
+              type: string
+              description: The entity instagram link.
+              example: https://www.instagram.com/chefrestaurant
+            tiktokLink:
+              type: string
+              description: The entity tiktok link.
+              example: https://www.tiktok.com/chefrestaurant
+            cityId:
+              type: integer
+              description: The entity city ID.
+              example: 1
+            profileImage:
+              type: string
+              description: The entity profile image.
+              example: 1695813389664-screenshot-from-2023-09-26-15-00-51.png
+            contactNumber:
+              type: string
+              description: The entity contact number.
+              example: 0123456789
+            contactName:
+              type: string
+              description: The entity contact name.
+              example: Mohamed Sherif
+            status:
+              type: string
+              description: The entity status (hidden, published).
+              example: published
+            type:
+              type: string
+              description: The entity type (store, publicPlace , bankBranch).
+              example: store
+            visitCount:
+              type: integer
+              description: The entity visit count.
+              example: 5
+            arabicDescription:
+              type: string
+              description: The entity arabic description.
+              example: مطعم الشيف هو مطعم مصري يقدم الوجبات السريعة
+            englishDescription:
+              type: string
+              description: The entity english description.
+              example: Chef Restaurant is an Egyptian restaurant that serves fast food
+            commercialId:
+              type: string
+              description: The entity commercial ID.
+              example: 123456789
+            ownerId:
+              type: integer
+              description: The entity owner ID.
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+              description: The entity creation date.
+              example: 2021-09-26T15:00:51.000Z
+            updatedAt:
+              type: string
+              format: date-time
+              description: The entity last update date.
+              example: 2021-09-26T15:00:51.000Z
+            categories:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Category ID
+                    example: 1
+                  arabicName:
+                    type: string
+                    description: Category name in Arabic
+                    example: 'الملابس'
+                  englishName:
+                    type: string
+                    description: Category name in English
+                    example: 'Clothes'
+                  visitCount:
+                    type: number
+                    description: Category visit count
+                    example: 0
+                  createdAt:
+                    type: date-time
+                    description: Category creation date
+                    example: '2021-01-01T00:00:00.000Z'
+                  updatedAt:
+                    type: date-time
+                    description: Category last update date
+                    example: '2021-01-01T00:00:00.000Z'
+            tags:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The tag ID
+                    example: 1
+                  arabicName:
+                    type: string
+                    description: The tag arabic name
+                    example: ماكينات صرف
+                  englishName:
+                    type: string
+                    description: The tag english name
+                    example: ATM
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: The accessory creation date.
+                    example: 2021-01-01T00:00:00.000Z
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: The accessory last update date.
+                    example: 2021-01-01T00:00:00.000Z
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '404':
+    description: Entity not found
+  '500':
+    description: Internal Server Error

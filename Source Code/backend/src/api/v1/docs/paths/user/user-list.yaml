@@ -1,0 +1,108 @@
+tags:
+  - User API
+summary: Get all users
+description: Get all users
+parameters:
+  - in: query
+    name: pageNumber
+    schema:
+      type: integer
+    description: The page number.
+  - in: query
+    name: pageSize
+    schema:
+      type: integer
+    description: The page size.
+  - in: query
+    name: id
+    schema:
+      type: integer
+    description: The id of the user.
+  - in: query
+    name: userName
+    schema:
+      type: string
+    description: The userName of the user.
+  - in: query
+    name: sortField
+    schema:
+      type: string
+    description: The sort field (id , userName).
+  - in: query
+    name: sortOrder
+    schema:
+      type: string
+    description: The sort order (asc , desc).
+
+responses:
+  '200':
+    description: Users retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            users:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  userName:
+                    type: string
+                    example: eslam
+                  fullName:
+                    type: string
+                    example: eslam ashraf
+                  profileImage:
+                    type: string
+                    example: 'image.png'
+                  googleId:
+                    type: string
+                    example: '123456789'
+                  facebookId:
+                    type: string
+                    example: '123456789'
+                  appleId:
+                    type: string
+                    example: '123456789'
+                  type:
+                    type: string
+                    example: treesal
+                  phoneNumber:
+                    type: string
+                    example: '01000000000'
+                  email:
+                    type: string
+                    example: 'user@gmail.com'
+                  createdAt:
+                    type: string
+                    example: '2021-05-30T12:00:00.000Z'
+                  updatedAt:
+                    type: string
+                    example: '2021-05-30T12:00:00.000Z'
+            metaData:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  example: 1
+                pageSize:
+                  type: integer
+                  example: 10
+                total:
+                  type: integer
+                  example: 1
+                totalPages:
+                  type: integer
+                  example: 1
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

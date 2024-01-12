@@ -1,0 +1,76 @@
+tags:
+  - Address API
+summary: Address List
+description: Get All Addresss
+parameters:
+  - in: query
+    name: pageNumber
+    schema:
+      type: integer
+    description: The page number.
+  - in: query
+    name: pageSize
+    schema:
+      type: integer
+    description: The page size.
+  - in: query
+    name: id
+    schema:
+      type: integer
+    description: The id of the address.
+  - in: query
+    name: arabicName
+    schema:
+      type: string
+    description: The arabicName of the address.
+  - in: query
+    name: englishName
+    schema:
+      type: string
+    description: The englishName of the address.
+  - in: query
+    name: entityId
+    schema:
+      type: integer
+    description: The entityId of the address.
+  - in: query
+    name: sortField
+    schema:
+      type: string
+    description: The sort field (id , arabicName , englishName , entityId).
+  - in: query
+    name: sortOrder
+    schema:
+      type: string
+    description: The sort order (asc , desc).
+responses:
+  '200':
+    description: Addresses List
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            addresses:
+              type: array
+              items:
+                $ref: '../../components/address.yaml'
+            metaData:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  example: 1
+                pageSize:
+                  type: integer
+                  example: 10
+                total:
+                  type: integer
+                  example: 100
+                totalPages:
+                  type: integer
+                  example: 10
+  '401':
+    description: Auhtentication failed
+  '500':
+    description: Internal server error

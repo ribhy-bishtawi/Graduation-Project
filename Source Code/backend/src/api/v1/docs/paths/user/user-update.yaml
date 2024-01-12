@@ -1,0 +1,77 @@
+tags:
+  - User API
+summary: update a user data
+description: update a user data by id, only treesal or same user can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: User id
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          userName:
+            type: string
+            description: User name
+            example: 'ali'
+          password:
+            type: string
+            description: User password (at least 6 characters long and accept letters, numbers, and special characters)
+            example: '123456'
+          fullName:
+            type: string
+            description: User full name
+            example: 'ali ashraf'
+          profileImage:
+            type: string
+            description: User profile image
+            example: 'image.png'
+          googleId:
+            type: string
+            description: Google id
+            example: '123456789'
+          facebookId:
+            type: string
+            description: Facebook id
+            example: '123456789'
+          appleId:
+            type: string
+            description: Apple id
+            example: '123456789'
+          type:
+            type: string
+            description: User type (treesal, store_owner, admin, customer)
+            example: 'customer'
+          phoneNumber:
+            type: string
+            example: '01000000000'
+          email:
+            type: string
+            example: 'user@gmail.com'
+        required:
+          - userName
+          - type
+responses:
+  '204':
+    description: User updated successfully
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: User not found
+  '409':
+    description: User name or phone number already exists
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

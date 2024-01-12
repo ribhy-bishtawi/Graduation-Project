@@ -1,0 +1,27 @@
+tags:
+  - User API
+summary: Delete a user
+description: Delete a user by id, only treesal or same user can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: User id
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '204':
+    description: User deleted successfully
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: User not found
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

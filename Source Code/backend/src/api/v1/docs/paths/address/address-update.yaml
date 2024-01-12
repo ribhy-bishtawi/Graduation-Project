@@ -1,0 +1,61 @@
+tags:
+  - Address API
+summary: Update address
+description: Update address by id, only (admin, super_admin, treesal) or store_owner that own the entity can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: The address id to update
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - arabicName
+          - englishName
+          - lat
+          - long
+          - entityId
+        properties:
+          arabicName:
+            type: string
+            description: The address arabic name
+          englishName:
+            type: string
+            description: The address english name
+          lat:
+            type: number
+            description: The address latitude
+          long:
+            type: number
+            description: The address longitude
+          entityId:
+            type: number
+            description: The address entity id
+      example:
+        arabicName: 'المنصورة'
+        englishName: 'Mansoura'
+        lat: 31.037933
+        long: 31.381523
+        entityId: 1
+responses:
+  '204':
+    description: Address updated
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: Address not found
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

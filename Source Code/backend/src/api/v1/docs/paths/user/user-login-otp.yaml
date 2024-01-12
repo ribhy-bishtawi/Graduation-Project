@@ -1,0 +1,23 @@
+tags:
+  - User API
+summary: User Login with phone number
+description: User Login with phone number
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          phoneNumber:
+            type: string
+            example: '12345678'
+        required:
+          - phoneNumber
+responses:
+  '200':
+    description: OTP sent successfully
+  '404':
+    description: User not found
+  '500':
+    description: Internal Server Error

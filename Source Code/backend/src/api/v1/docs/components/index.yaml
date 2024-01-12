@@ -1,0 +1,5 @@
+schemas:
+  tag:
+    $ref: './tag.yaml'
+  address:
+    $ref: './address.yaml'

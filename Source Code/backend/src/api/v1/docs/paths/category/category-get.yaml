@@ -1,0 +1,56 @@
+tags:
+  - Category API
+summary: Get category
+description: Get category by ID
+parameters:
+  - name: id
+    in: path
+    description: Category ID
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '200':
+    description: Category retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: number
+              description: Category ID
+              example: 1
+            arabicName:
+              type: string
+              description: Category name in Arabic
+              example: 'الملابس'
+            englishName:
+              type: string
+              description: Category name in English
+              example: 'Clothes'
+            visitCount:
+              type: number
+              description: Category visit count
+              example: 0
+            createdAt:
+              type: date-time
+              description: Category creation date
+              example: '2021-01-01T00:00:00.000Z'
+            updatedAt:
+              type: date-time
+              description: Category last update date
+              example: '2021-01-01T00:00:00.000Z'
+            EntityCount:
+              type: number
+              description: Number of entities in category
+              example: 5
+  '400':
+    description: Bad request
+  '401':
+    description: Authentication failed
+  '404':
+    description: Category not found
+  '500':
+    description: Internal server error

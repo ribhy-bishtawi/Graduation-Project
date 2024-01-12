@@ -1,0 +1,43 @@
+tags:
+  - Address API
+summary: Update address-tag table
+description: Update address-tag table, only (admin, super_admin, treesal) or store_owner that own the entity can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: The address id
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          tagIds:
+            type: array
+            items:
+              type: number
+            description: The tagIds of tags.
+        required:
+          - tagIds
+      example:
+        tagIds: [1, 2]
+responses:
+  '204':
+    description: Address-tag updated successfully
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: Address not found
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []

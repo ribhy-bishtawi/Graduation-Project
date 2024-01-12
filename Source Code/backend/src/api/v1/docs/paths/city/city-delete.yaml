@@ -1,0 +1,29 @@
+tags:
+  - City API
+summary: Delete city
+description: Delete city by id, only (admin, super_admin, treesal) can use this endpoint
+parameters:
+  - name: id
+    in: path
+    description: The city id to delete
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '204':
+    description: City deleted
+  '400':
+    description: Bad Request
+  '401':
+    description: Authentication failed
+  '403':
+    description: Unauthorized
+  '404':
+    description: City not found
+  '409':
+    description: Conflict, city is used in entity and cannot be deleted
+  '500':
+    description: Internal Server Error
+security:
+  - bearerAuth: []
