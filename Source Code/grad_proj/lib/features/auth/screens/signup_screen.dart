@@ -171,6 +171,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                             type: "store_owner",
                                             phoneNumber:
                                                 _phoneNumberController.text)),
+                                        authProvider.phoneNum =
+                                            _phoneNumberController.text,
                                         if (mounted) navigateToOTPPage(context),
                                       }
                                   }

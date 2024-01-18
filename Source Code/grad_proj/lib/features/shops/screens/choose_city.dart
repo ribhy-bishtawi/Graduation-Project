@@ -66,7 +66,7 @@ class _ChooseCityState extends State<ChooseCity> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                    '${cities[index].arabicName}',
+                    '${cities[index].englishName}',
                     style: TextStyleUtil.chooseScreensTextStyle,
                   ),
                   trailing: cities[index].isSelected

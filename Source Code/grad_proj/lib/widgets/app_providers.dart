@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad_proj/core/firebase/firebase_view_model.dart';
+import 'package:grad_proj/features/Offers/view_models/offer_view_model.dart';
 import 'package:grad_proj/features/auth/view_models/auth_view_model.dart';
 import 'package:grad_proj/features/notification/view_models/notification_view_model.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => FirebaseViewModel()),
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => NotificationViewModel()),
+        ChangeNotifierProvider(create: (_) => OfferViewModel()),
       ],
       child: child,
     );

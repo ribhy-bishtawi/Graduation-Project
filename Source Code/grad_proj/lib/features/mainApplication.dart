@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grad_proj/features/Offers/screens/offers.dart';
 import 'package:grad_proj/features/notification/screens/notification.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_proj/core/network/apis_constants.dart';
@@ -38,7 +39,7 @@ class _MainAppState extends State<MainApp> {
     PageController pageController = PageController();
     List<Widget> pages = <Widget>[
       Shops(),
-      Notifications(),
+      Offers(),
       Notifications(),
       Settings()
     ];

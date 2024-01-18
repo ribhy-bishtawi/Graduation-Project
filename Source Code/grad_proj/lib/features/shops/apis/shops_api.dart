@@ -77,14 +77,14 @@ class ShopsAPIs {
     return elementsList;
   }
 
-  static Future<CustomResponse> updateField(
-      List<int> ids, String requestBodyValue, String endpoint) async {
+  static Future<CustomResponse> updateField(List<int> ids,
+      String requestBodyValue, String endpoint, String token) async {
     Map<String, dynamic> requestBody = {
       requestBodyValue: ids,
     };
     String requestBodyJson = json.encode(requestBody);
-    CustomResponse customResponse =
-        await NetworkHelper.instance.put(url: endpoint, body: requestBodyJson);
+    CustomResponse customResponse = await NetworkHelper.instance
+        .put(url: endpoint, body: requestBodyJson, token: token);
     if (customResponse.statusCode! >= StatusCode.created &&
         customResponse.statusCode! < 300) {
     } else {
@@ -104,10 +104,10 @@ class ShopsAPIs {
     return customResponse;
   }
 
-  static Future<CustomResponse> updateEntity<T>(
-      T field, String? Function(T) toJson, String endpoint) async {
-    CustomResponse customResponse =
-        await NetworkHelper.instance.put(url: endpoint, body: toJson(field));
+  static Future<CustomResponse> updateEntity<T>(T field,
+      String? Function(T) toJson, String endpoint, String token) async {
+    CustomResponse customResponse = await NetworkHelper.instance
+        .put(url: endpoint, body: toJson(field), token: token);
     if (customResponse.statusCode == StatusCode.created ||
         customResponse.statusCode == StatusCode.updated) {
     } else {
@@ -146,9 +146,10 @@ class ShopsAPIs {
     return element!;
   }
 
-  static Future<CustomResponse> deleteById<T>(String endpoint) async {
+  static Future<CustomResponse> deleteById<T>(
+      String endpoint, String token) async {
     CustomResponse response =
-        await NetworkHelper.instance.delete(url: endpoint);
+        await NetworkHelper.instance.delete(url: endpoint, token: token);
     if (response.statusCode == StatusCode.success ||
         response.statusCode == StatusCode.updated) {
       return response;

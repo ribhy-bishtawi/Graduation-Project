@@ -16,9 +16,9 @@ class UsersAPIs {
   }
 
   static Future<CustomResponse> updateEntity<T>(T field,
-      String? Function(T) toJson, String endpoint, String? token) async {
-    CustomResponse customResponse =
-        await NetworkHelper.instance.put(url: endpoint, body: toJson(field));
+      String? Function(T) toJson, String endpoint, String token) async {
+    CustomResponse customResponse = await NetworkHelper.instance
+        .put(url: endpoint, body: toJson(field), token: token);
     if (customResponse.statusCode == StatusCode.created ||
         customResponse.statusCode == StatusCode.updated) {
     } else {

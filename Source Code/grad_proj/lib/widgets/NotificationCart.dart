@@ -31,7 +31,7 @@ class _NotificationCardState extends State<NotificationCard> {
             Padding(
                 padding: EdgeInsets.all(Constants.padding14),
                 child: Align(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.centerLeft,
                   child: Column(
                     // TODO : put sizedboxes betweeen elements
                     crossAxisAlignment: CrossAxisAlignment.start,

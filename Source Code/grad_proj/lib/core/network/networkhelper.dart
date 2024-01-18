@@ -138,13 +138,14 @@ class NetworkHelper {
 
   Future<CustomResponse> delete({
     required String url,
+    required String token,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headersForRequest,
     bool setAuthToken = true,
     body,
   }) async {
     // _setJsonHeader();
-    _setAuthHeader(set: setAuthToken);
+    _setAuthHeader(set: setAuthToken, token: token);
     Response? response;
     try {
       if (headersForRequest != null) {
@@ -184,7 +185,7 @@ class NetworkHelper {
 
   Future<CustomResponse> put(
       {required String url,
-      String? token,
+      required String token,
       Map<String, dynamic>? queryParameters,
       Map<String, dynamic>? headersForRequest,
       bool setAuthToken = true,

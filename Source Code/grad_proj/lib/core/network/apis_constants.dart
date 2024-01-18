@@ -11,6 +11,7 @@ class APIsConstants {
   static String userRegister = "users/register";
   static String userLogin = "users/login";
   static String notification = "notifications";
+  static String offer = "deals";
   static String fixedToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJlc2xhbSIsInR5cGUiOiJ0cmVlc2FsIiwiaWF0IjoxNjk4NDgxMDg3LCJleHAiOjE2OTg1MjQyODd9.7UcyGvrGzeDJrKcYK22pxps24RIYSGmaEhOQcT6v8MQ";
 }

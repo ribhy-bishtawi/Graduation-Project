@@ -113,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ? () async => {
                             isUserLoggedIn = await firebaseProvider
                                 .loginWithOTP(_phoneNumController.text),
+                            authProvider.phoneNum = _phoneNumController.text,
                             if (isUserLoggedIn)
                               if (mounted) navigateToOTPPage(context),
                           }

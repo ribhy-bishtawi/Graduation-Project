@@ -46,6 +46,8 @@ abstract class AppStrings {
   static final phoneAlreadyRegistered = "phoneAlreadyRegistered".tr();
   static final phoneNotRegistered = "phoneNotRegistered".tr();
   static final englishTextOnlyErrorMeesage = "englishTextOnlyErrorMeesage".tr();
+  static final shopNameInTurkish = "shopNameInTurkish".tr();
+
   static final validFacebookLinkErrorMeesage =
       "validFacebookLinkErrorMeesage".tr();
   static final validInstagramLinkErrorMeesage =
@@ -115,4 +117,16 @@ abstract class AppStrings {
   static final otpScreenResendTextTwo = "otpScreenResendTextTwo".tr();
   static final loginScreenHeader = "loginScreenHeader".tr();
   static final or = "or".tr();
+  static final offerPageTitle = "offerPageTitle".tr();
+  static final bettwenStartAndEndDateInTheOfferCard =
+      "bettwenStartAndEndDateInTheOfferCard".tr();
+  static final offerPageAddNewOfferButton = "offerPageAddNewOfferButton".tr();
+  static final addNewOfferTitle = "addNewOfferTitle".tr();
+  static final offerNameHint = "offerNameHint".tr();
+  static final offerStartDateHint = "offerStartDateHint".tr();
+  static final offerEndDateHint = "offerEndDateHint".tr();
+  static final offerDescriptionHint = "offerDescriptionHint".tr();
+  static final offerPageAddOfferButton = "offerPageAddOfferButton".tr();
+  static final deleteOffer = "deleteOffer".tr();
+  static final turkishTextOnlyErrorMeesage = "turkishTextOnlyErrorMeesage".tr();
 }

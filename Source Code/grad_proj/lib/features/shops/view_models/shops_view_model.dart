@@ -79,19 +79,7 @@ class ShopsViewModel extends ChangeNotifier {
 
   Future<void> deleteShopById(int shopId) async {
     try {
-      List<WorkingHours> workingHours =
-          await ShopsAPIs.fetchListById<WorkingHours>(
-              "${APIsConstants.workingHours}/$shopId",
-              WorkingHours.fromJson,
-              "workingHrs");
-
-      for (WorkingHours hour in workingHours) {
-        try {
-          ShopsAPIs.deleteById("${APIsConstants.workingHours}/${hour.id}");
-        } catch (error) {
-          print(error);
-        }
-      }
+      ShopsAPIs.deleteById("${APIsConstants.shops}/$shopId", userToken!);
     } catch (error) {
       print("$error");
     }
@@ -105,9 +93,14 @@ class ShopsViewModel extends ChangeNotifier {
           Shop.fromJson,
           pageKey!,
           numberOfShopsPerRequest);
+
       final filteredShops =
           shopList.where((shop) => shop.ownerId == userID).toList();
-
+      for (var shop in filteredShops) {
+        Address tempAdress =
+            await fetchFirstAddressesThatMatchEntityId(shop.id!);
+        shop.address = tempAdress;
+      }
       final isLastPage = filteredShops.length < numberOfShopsPerRequest;
 
       if (isLastPage) {
@@ -248,6 +241,23 @@ class ShopsViewModel extends ChangeNotifier {
     }
   }
 
+  Future<Address> fetchFirstAddressesThatMatchEntityId(int entityId) async {
+    errorMessage = null;
+    List<Address> tempAddresses = [];
+    Address? address;
+    try {
+      Map<String, dynamic> queryParameters = {"entityId": entityId};
+      tempAddresses = await ShopsAPIs.fetchAll(
+          APIsConstants.address, "addresses", Address.fromJson,
+          queryParameters: queryParameters);
+      address = tempAddresses[0];
+    } catch (e) {
+      errorMessage = e.toString();
+      print("$errorMessage");
+    }
+    return address!;
+  }
+
   void addAddressToList(Address address) {
     if (!addresses.containsKey(address.long)) {
       addresses["${address.long}"] = Address();
@@ -364,8 +374,8 @@ class ShopsViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       int id = shopId;
-      await ShopsAPIs.updateEntity(
-          shop, (obj) => obj.toJson(), "${APIsConstants.shops}/$id");
+      await ShopsAPIs.updateEntity(shop, (obj) => obj.toJson(),
+          "${APIsConstants.shops}/$id", userToken!);
       futureActions.add(updateWorkingDayHours(id));
       futureActions.add(updateField("categoryIds", '/entitys/$id/categories',
           returnSelectedCategories()!));
@@ -399,7 +409,7 @@ class ShopsViewModel extends ChangeNotifier {
             foundInApi = true;
             if (!localDay.isSelected! && apiDay.isSelected!) {
               futureWorkingHours.add(ShopsAPIs.deleteById(
-                  "${APIsConstants.workingHours}/${apiDay.id}"));
+                  "${APIsConstants.workingHours}/${apiDay.id}", userToken!));
             } else {
               localDay.entityId = shopId;
               localDay.id = apiDay.id;
@@ -407,7 +417,8 @@ class ShopsViewModel extends ChangeNotifier {
               futureWorkingHours.add(ShopsAPIs.updateEntity(
                   apiDay,
                   (obj) => obj.toJson(),
-                  "${APIsConstants.workingHours}/${apiDay.id}"));
+                  "${APIsConstants.workingHours}/${apiDay.id}",
+                  userToken!));
             }
             break;
           }
@@ -440,8 +451,11 @@ class ShopsViewModel extends ChangeNotifier {
       for (Address address in tempAddresses) {
         try {
           addresses["${address.long}"]!.entityId = address.entityId;
-          await ShopsAPIs.updateEntity(addresses["${address.long}"],
-              (obj) => obj?.toJson(), "${APIsConstants.address}/${address.id}");
+          await ShopsAPIs.updateEntity(
+              addresses["${address.long}"],
+              (obj) => obj?.toJson(),
+              "${APIsConstants.address}/${address.id}",
+              userToken!);
           if (addresses["${address.long}"]!.tags == null) return;
           updateField("tagIds", '/addresses/${address.id}/tags',
               returnTagsIds(addresses["${address.long}"]!.tags!));
@@ -461,7 +475,7 @@ class ShopsViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       await ShopsAPIs.updateField(
-          branchAddresstags, requestBodyValue, endpoint);
+          branchAddresstags, requestBodyValue, endpoint, userToken!);
     } catch (e) {
       errorMessage = e.toString();
       print("$errorMessage");

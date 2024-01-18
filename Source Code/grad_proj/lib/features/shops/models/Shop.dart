@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:grad_proj/features/shops/models/Address.dart';
 import 'package:grad_proj/features/shops/models/Category.dart';
 import 'package:grad_proj/features/shops/models/Tag.dart';
 import 'package:grad_proj/features/shops/models/WorkingDay.dart';
@@ -23,9 +24,11 @@ class Shop {
   List<WorkingHours>? workingDays;
   List<Category>? categories;
   List<Tag>? tags;
+  Address? address;
 
   Shop(
       {this.id,
+      this.address,
       required this.arabicName,
       required this.englishName,
       this.facebookLink,

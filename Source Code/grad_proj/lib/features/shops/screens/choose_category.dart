@@ -69,7 +69,7 @@ class _ChooseCategoryState extends State<ChooseCategory> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                    '${categoriesList[index].arabicName}',
+                    '${categoriesList[index].englishName}',
                     style: TextStyleUtil.chooseScreensTextStyle,
                   ),
                   leading: Checkbox(

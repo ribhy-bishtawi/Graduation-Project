@@ -49,8 +49,14 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>To take user profile image</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app needs location permission</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Need location when in use</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Always and when in use!</string>
+    <key>NSLocationUsageDescription</key>
+    <string>Older devices need location.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Can I have location always?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string> To choose user profile image</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -68,7 +74,7 @@
 	<key>UIStatusBarHidden</key>
 	<false/>
 	<key>UISupportedInterfaceOrientations</key>
-	<array>
+<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>

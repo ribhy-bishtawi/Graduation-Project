@@ -12,6 +12,7 @@ class AuthViewModel extends ChangeNotifier {
 
   String? adminUserToken;
   int? userID;
+  String? phoneNum;
   final GlobalKey<FormState> mainFormKey = GlobalKey<FormState>();
 
   Future<void> loginToSuperUser() async {
@@ -82,7 +83,7 @@ class AuthViewModel extends ChangeNotifier {
     try {
       int id = userID!;
       await UsersAPIs.updateEntity(user, (obj) => obj.toJson(),
-          "${APIsConstants.users}/$id", adminUserToken);
+          "${APIsConstants.users}/$id", adminUserToken!);
     } catch (e) {
       print("$e");
     }

@@ -68,7 +68,7 @@ class _ShopsState extends State<Shops> {
                               description:
                                   item.arabicDescription ?? "No description",
                               phoneNumber: item.contactNumber ?? "-",
-                              address: "no address found",
+                              address: item.address!,
                               onEditPressed: () {
                                 navigateToAddShopsScreen(true, item);
                               },

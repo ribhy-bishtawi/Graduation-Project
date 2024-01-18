@@ -4,6 +4,7 @@ class Palette {
   // Colors
   static const splashBackground = Color(0xFFFFAE53);
   static const primary = Color(0xFF804D00);
+
   static const black = Colors.black;
   static const designBlack = Color(0xFF272932);
   static const searchInputBackground = Color(0xFFFAFAFA);
@@ -34,7 +35,10 @@ class Palette {
   static const textFieldIcon = Color(0xFF8a8c8d);
   static const warning = Color(0xFFFF6E5D);
   static const cancelText = Color(0xFF54555B);
-  static var lightModeAppTheme = ThemeData.light().copyWith(
+
+  static var theme = ThemeData(primarySwatch: createMaterialColor(primary));
+  static var lightModeAppTheme = theme.copyWith(
+    primaryColorLight: primary,
     scaffoldBackgroundColor: whiteColor,
     cardColor: greyColor,
     appBarTheme: const AppBarTheme(
@@ -47,8 +51,38 @@ class Palette {
     drawerTheme: const DrawerThemeData(
       backgroundColor: whiteColor,
     ),
-    primaryColor: black,
+    primaryColor: primary,
+
     // todo: remove this
     backgroundColor: whiteColor,
   );
+
+  static MaterialColor createMaterialColor(Color color) {
+    List<int> strengths = <int>[
+      50,
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900
+    ];
+    Map<int, Color> swatch = {};
+
+    for (int strength in strengths) {
+      final double weight = 0.5 - ((strength / 1000.0) / 2.0);
+      final int blend = (1.0 - weight).round();
+      swatch[strength] = Color.fromRGBO(
+        color.red + ((blend - color.red) * weight).round(),
+        color.green + ((blend - color.green) * weight).round(),
+        color.blue + ((blend - color.blue) * weight).round(),
+        1,
+      );
+    }
+
+    return MaterialColor(color.value, swatch);
+  }
 }

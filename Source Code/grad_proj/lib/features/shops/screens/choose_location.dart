@@ -67,7 +67,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
         ? CameraPosition(
             target: LatLng(address!.lat!, address!.long!), zoom: 14.4746)
         : const CameraPosition(
-            target: LatLng(32.221617, 35.261280), zoom: 14.4746);
+            target: LatLng(39.781933, 32.819766), zoom: 14.4746);
 
     final double horizontalPadding = 0.05.sw;
     final double verticalPadding = 0.02.sh;
@@ -115,28 +115,28 @@ class _ChooseLocationState extends State<ChooseLocation> {
                       },
                     ),
                   ),
-                  Positioned(
-                      bottom: 0.05.sw,
-                      right: 0.01.sh,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _requestLocationPermission();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Palette.textInputText,
-                          backgroundColor: Colors.white,
-                          shape: const CircleBorder(),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: horizontalPadding,
-                            vertical: verticalPadding,
-                          ),
-                          elevation: 4.0,
-                        ),
-                        child: Icon(
-                          Icons.gps_fixed,
-                          size: 20.sp,
-                        ),
-                      )),
+                  // Positioned(
+                  //     bottom: 0.05.sw,
+                  //     right: 0.01.sh,
+                  //     child: ElevatedButton(
+                  //       onPressed: () {
+                  //         _requestLocationPermission();
+                  //       },
+                  //       style: ElevatedButton.styleFrom(
+                  //         foregroundColor: Palette.textInputText,
+                  //         backgroundColor: Colors.white,
+                  //         shape: const CircleBorder(),
+                  //         padding: EdgeInsets.symmetric(
+                  //           horizontal: horizontalPadding,
+                  //           vertical: verticalPadding,
+                  //         ),
+                  //         elevation: 4.0,
+                  //       ),
+                  //       child: Icon(
+                  //         Icons.gps_fixed,
+                  //         size: 20.sp,
+                  //       ),
+                  //     )),
                 ],
               ),
             ),
@@ -162,7 +162,8 @@ class _ChooseLocationState extends State<ChooseLocation> {
                       CustomTextField(
                           textFieldController: branchNameTextController,
                           hintText: postOrEditModeText(
-                              AppStrings.offerName, address?.arabicName),
+                              AppStrings.addBranchScreenTitle,
+                              address?.arabicName),
                           textStyle: TextStyleUtil.addShopInputTextStyle),
                       Constants.gapH24,
                       ElevatedButton(

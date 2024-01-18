@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
+import 'package:grad_proj/features/auth/view_models/auth_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:grad_proj/core/constants/constants.dart';
@@ -37,7 +38,8 @@ class AddShopInformation extends StatefulWidget {
 }
 
 class _AddShopInformationState extends State<AddShopInformation> {
-  late ShopsViewModel provider;
+  late ShopsViewModel shopProvider;
+  late AuthViewModel authProvider;
 
   final TextEditingController _shopNameInArabicController =
       TextEditingController();
@@ -74,13 +76,13 @@ class _AddShopInformationState extends State<AddShopInformation> {
 
   @override
   void initState() {
-    provider = Provider.of<ShopsViewModel>(context, listen: false);
+    shopProvider = Provider.of<ShopsViewModel>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      provider.init();
+      shopProvider.init();
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await provider.getShopData(widget.shop?.id ?? 0,
+      await shopProvider.getShopData(widget.shop?.id ?? 0,
           isEditMode: widget.isEditMode);
 
       if (widget.isEditMode) {
@@ -103,7 +105,7 @@ class _AddShopInformationState extends State<AddShopInformation> {
   @override
   void dispose() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      provider.clearData();
+      shopProvider.clearData();
     });
 
     super.dispose();
@@ -111,7 +113,9 @@ class _AddShopInformationState extends State<AddShopInformation> {
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<ShopsViewModel>(context, listen: true);
+    shopProvider = Provider.of<ShopsViewModel>(context, listen: true);
+    authProvider = Provider.of<AuthViewModel>(context, listen: true);
+
     double minBound = 0;
     double upperBound = 1.0;
     return Stack(
@@ -126,13 +130,13 @@ class _AddShopInformationState extends State<AddShopInformation> {
               textAlign: TextAlign.right,
             ),
           ),
-          body: widget.isEditMode && provider.loading == true
+          body: widget.isEditMode && shopProvider.loading == true
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : SafeArea(
                   child: Form(
-                    key: provider.mainFormKey,
+                    key: shopProvider.mainFormKey,
                     child: SingleChildScrollView(
                       padding: EdgeInsets.all(16.w),
                       child: Column(
@@ -145,10 +149,10 @@ class _AddShopInformationState extends State<AddShopInformation> {
                           Constants.gapH20,
                           CustomTextField(
                             textFieldController: _shopNameInArabicController,
-                            hintText: AppStrings.shopNameInArabic,
+                            hintText: AppStrings.shopNameInTurkish,
                             textStyle: TextStyleUtil.addShopInputTextStyle,
                             isIconNeeded: false,
-                            validator: Validators.validateShopNameInArabic,
+                            validator: Validators.validateShopNameInTurkish,
                           ),
                           Constants.gapH16,
                           CustomTextField(
@@ -165,10 +169,10 @@ class _AddShopInformationState extends State<AddShopInformation> {
                             textStyle: TextStyleUtil.addShopInputTextStyle,
                           ),
                           Constants.gapH16,
-                          provider.addresses.isNotEmpty
+                          shopProvider.addresses.isNotEmpty
                               ? Column(
-                                  children:
-                                      provider.addresses.entries.map((entry) {
+                                  children: shopProvider.addresses.entries
+                                      .map((entry) {
                                   final address = entry.value;
                                   final arabicName = address.arabicName;
                                   return Column(
@@ -199,7 +203,7 @@ class _AddShopInformationState extends State<AddShopInformation> {
                           Constants.gapH12,
                           FractionallySizedBox(
                             alignment: Alignment.topRight,
-                            widthFactor: 1 / 3,
+                            widthFactor: 1.5 / 3,
                             child: ElevatedButton(
                                 onPressed: () {
                                   Routemaster.of(context).push("/map/false");
@@ -217,7 +221,7 @@ class _AddShopInformationState extends State<AddShopInformation> {
                                 categoryPanelController.expand();
                               }),
                           Visibility(
-                              visible: provider.showCategoryValidationError,
+                              visible: shopProvider.showCategoryValidationError,
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(0, 5.h, 8.w, 0),
                                 child: Text(
@@ -230,7 +234,7 @@ class _AddShopInformationState extends State<AddShopInformation> {
                               text: AppStrings.city,
                               onPressed: () => cityPanelController.expand()),
                           Visibility(
-                              visible: provider.showCityValidationError,
+                              visible: shopProvider.showCityValidationError,
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(0, 5.h, 8.w, 0),
                                 child: Text(
@@ -243,7 +247,7 @@ class _AddShopInformationState extends State<AddShopInformation> {
                               text: AppStrings.time,
                               onPressed: () => timePanelController.expand()),
                           Visibility(
-                              visible: provider.showDayValidationError,
+                              visible: shopProvider.showDayValidationError,
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(0, 5.h, 8.w, 0),
                                 child: Text(
@@ -301,7 +305,7 @@ class _AddShopInformationState extends State<AddShopInformation> {
                           ),
                           Constants.gapH20,
                           WrapText(
-                            elementsList: provider.mainTags,
+                            elementsList: shopProvider.mainTags,
                           ),
                           Row(
                             children: [
@@ -319,7 +323,7 @@ class _AddShopInformationState extends State<AddShopInformation> {
                                 child: ElevatedButton(
                                     onPressed: () {
                                       setState(() {
-                                        provider.addTag(
+                                        shopProvider.addTag(
                                             Tag(
                                               englishName: "Test",
                                               arabicName:
@@ -350,7 +354,7 @@ class _AddShopInformationState extends State<AddShopInformation> {
                             child: WrapImages(
                               imagePath: //widget.isEditMode
                                   // ? widget.shop!.profileImage
-                                  provider.localImagePath,
+                                  shopProvider.localImagePath,
                               isEditMode: widget.isEditMode,
                             ),
                           ),
@@ -383,15 +387,16 @@ class _AddShopInformationState extends State<AddShopInformation> {
                             height: 48.h,
                             child: ElevatedButton(
                                 onPressed: () async {
-                                  if (provider.validateForm()) {
+                                  if (shopProvider.validateForm()) {
                                     Shop shop = Shop(
-                                        cityId: provider.returnSelectedCity()!,
+                                        cityId:
+                                            shopProvider.returnSelectedCity()!,
                                         arabicName:
                                             _shopNameInArabicController.text,
                                         englishName:
                                             _shopNameInEnglishController.text,
                                         profileImage:
-                                            provider.imagePathToUpload,
+                                            shopProvider.imagePathToUpload,
                                         commercialId:
                                             _commercialRegistrationNoController
                                                         .text ==
@@ -421,9 +426,9 @@ class _AddShopInformationState extends State<AddShopInformation> {
                                                 : _tiktokAccountController.text,
                                         type: "store");
                                     widget.isEditMode
-                                        ? await provider.updateShop(
+                                        ? await shopProvider.updateShop(
                                             shop, widget.shop!.id!)
-                                        : await provider.addShop(shop);
+                                        : await shopProvider.addShop(shop);
                                     if (mounted) Routemaster.of(context).pop();
                                   }
                                 },

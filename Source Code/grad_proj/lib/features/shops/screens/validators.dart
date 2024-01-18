@@ -26,6 +26,19 @@ class Validators {
     return null;
   }
 
+  static String? validateShopNameInTurkish(String? value) {
+    if (value == null || value.isEmpty) {
+      return AppStrings.requiredFieldErrorMessage;
+    }
+
+    final turkishRegex = RegExp(r"^[a-zA-Z0-9ğüşöçİĞÜŞÖÇ\s]+$");
+
+    if (!turkishRegex.hasMatch(value)) {
+      return AppStrings.shopNameInTurkish;
+    }
+    return null;
+  }
+
   static String? validateFacebookLink(String? value) {
     if (value == null || value.isEmpty) {
       return null;

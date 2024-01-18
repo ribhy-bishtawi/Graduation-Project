@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:grad_proj/core/firebase/firebase_view_model.dart';
+import 'package:grad_proj/features/Offers/models/offer.dart';
+import 'package:grad_proj/features/Offers/view_models/offer_view_model.dart';
 import 'package:grad_proj/features/auth/view_models/auth_view_model.dart';
 import 'package:grad_proj/features/notification/view_models/notification_view_model.dart';
 import 'package:grad_proj/features/shops/view_models/shops_view_model.dart';
@@ -40,7 +42,8 @@ class _OTPScreenState extends State<OTPScreen> {
         Provider.of<ShopsViewModel>(context, listen: false);
     NotificationViewModel notificationProvider =
         Provider.of<NotificationViewModel>(context, listen: true);
-
+    OfferViewModel offerProvider =
+        Provider.of<OfferViewModel>(context, listen: true);
     void onPinpunCompleted() {
       setState(() {
         _pinputCompleted = true;
@@ -107,9 +110,9 @@ class _OTPScreenState extends State<OTPScreen> {
                 TextButton(
                   onPressed: () => {},
                   // onPressed: () => snackBar("OTP resend!!"),
-                  child: const Text(
-                    "0663127676",
-                    style: TextStyle(
+                  child: Text(
+                    authProvider.phoneNum!,
+                    style: const TextStyle(
                         color: Palette.black,
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
@@ -165,7 +168,8 @@ class _OTPScreenState extends State<OTPScreen> {
                                     userData.data["userId"];
                                 notificationProvider.userToken =
                                     userData.data["token"];
-
+                                offerProvider.userToken =
+                                    userData.data["token"];
                                 firebaseProvider.changeUserStatus();
                               }
 

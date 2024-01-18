@@ -113,9 +113,7 @@ class _NotificationsState extends State<Notifications> {
                   )),
             ),
             floatingActionButtonLocation:
-                notificationViewModel.notifications.isEmpty
-                    ? null
-                    : FloatingActionButtonLocation.startFloat,
+                FloatingActionButtonLocation.startFloat,
             floatingActionButton: FloatingActionButton.extended(
               onPressed: () {
                 Navigator.push(

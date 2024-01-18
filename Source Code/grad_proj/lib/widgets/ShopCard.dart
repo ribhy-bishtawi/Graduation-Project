@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grad_proj/core/constants/constants.dart';
+import 'package:grad_proj/features/shops/models/Address.dart';
 import 'package:grad_proj/theme/palette.dart';
 import 'package:grad_proj/theme/text_style_util.dart';
 
@@ -11,7 +12,7 @@ class ShopCard extends StatefulWidget {
   final String city;
   final String description;
   final String phoneNumber;
-  final String address;
+  final Address address;
   final VoidCallback onEditPressed;
   final VoidCallback onShopDeletePressed;
 
@@ -121,7 +122,7 @@ class _ShopCardState extends State<ShopCard> {
                             color: Palette.secondaryTextColor,
                             size: Constants.iconSize,
                           ),
-                          Text(widget.address,
+                          Text(widget.address.arabicName!,
                               style: TextStyleUtil.shopDetailsStyle),
                         ],
                       )
